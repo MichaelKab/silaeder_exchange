@@ -120,3 +120,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_REDIRECT_URL = 'prof_page'
+#from django.core.urlresolvers import reverse_lazy
+LOGOUT_REDIRECT_URL = "home_page"

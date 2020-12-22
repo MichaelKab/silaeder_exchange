@@ -1,22 +1,26 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-
 # Create your models_b here.
 class CustomUser(AbstractUser):
     age = models.IntegerField(default=13)
     gender = models.CharField(choices=[("М", "М"), ("Ж", "Ж")], max_length=2)
     gender_work = models.CharField(choices=[("М", "М"), ("Ж", "Ж"), ("Неважно", "Неважно")], max_length=8)
 
-
 class Skill(models.Model):
-    name_skill = models.CharField(max_length=100)
+    name_skill = models.CharField(max_length=100, default="дизайн")
 
+    def __str__(self):
+        return self.name_skill
 
 class Category(models.Model):
     name_category = models.CharField(max_length=60)
     parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE, verbose_name="Родитель",
                                related_name='child')
+
+    def __str__(self):
+        return "Название:{} Родитель:{}".format(self.name_category, self.parent)
+
 
 
 class Category_with_skill(models.Model):
@@ -24,6 +28,13 @@ class Category_with_skill(models.Model):
     skill_in_category = models.ManyToManyField(Skill, blank=True)
 
 
+    def __str__(self):
+        return "Категория:{} Навык:{}".format(self.main_category.name_category, self.skill_in_category)
+
+
 class User_with_skill(models.Model):
     User_main = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    skill_wont_know = models.BooleanField(Skill)  # True - know ; False - wont
+    skill_main = models.ForeignKey(Skill, on_delete=models.CASCADE)
+    wont_know = models.BooleanField("Умеешь/хочешь научиться")  # True - know ; False - wont
+    def __str__(self):
+        return "ID:{} Навык:{} {}".format(self.User_main.id, self.skill_main, self.wont_know)

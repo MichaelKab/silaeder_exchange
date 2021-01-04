@@ -9,7 +9,7 @@
         {% csrf_token %}
         <p>
             <label>Изменение имени</label><br>
-            <input type="text" name="name" value="{{person.name}}" />
+            <input type="text" name="name" value="{{person.first_name}}" />
         </p>
         <p>
             <label>Изменение фамилии</label><br>
@@ -22,6 +22,18 @@
         <p>
             <label>Изменение ника</label><br>
             <input type="text" name="username" value="{{person.username}}" />
+        </p>
+        <p>
+            <label>Изменение города</label><br>
+            <select name="city">
+                <option disabled>Выберите город</option>
+              <option>Москва</option>
+              <option>Не москва</option>
+            </select>
+        </p>
+        <p>
+            <label>Изменение контактов</label><br>
+            <input type="text" name="contact" value="{{person.contact}}" />
         </p>
         <input type="submit" value="Сохранить" >
     </form>

@@ -44,8 +44,9 @@ class User_with_skill(models.Model):
 
 
 class Application(models.Model):
+    title = models.CharField(max_length=1000)
     user_creator = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    text_zone = models.CharField(max_length=1000)
+    about_me = models.CharField(max_length=1000)
     wont = models.CharField(max_length=1000)
     know = models.CharField(max_length=1000)
     contacts = models.CharField(max_length=1000)

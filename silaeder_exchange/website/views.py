@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import CustomUser, User_with_skill
+from .models import CustomUser, User_with_skill, Application
 from django.http import HttpResponseRedirect
 from django.http import HttpResponseNotFound
 from django.urls import reverse_lazy
@@ -10,23 +10,28 @@ from django.views import generic
 from .forms import CustomUserCreationForm
 
 def main(request):
-    html = "<html><body> <p>Main page<p> <a href='http://127.0.0.1:8000/accounts/login'>Log in</a></body></html>"
-    return HttpResponse(html)
+    applications = Application.objects.all()
+    print(applications)
+    return render(request, 'main.html', {"applications": applications})
 
 @login_required
 def cob(request):
-    print(request.user)
-    print(request.user.username, request.user.password)
-    print("###", request.GET)
-    print(request.user.id, "!!!!!!!!!")
     user = CustomUser.objects.get(id=request.user.id)
+    applications = Application.objects.filter(user_creator=request.user.id)
+    if request.method == "POST":
+        print("#################################")
+        application = Application()
+        application.user_creator = user
+        application.about_me = request.POST.get("about_me")
+        application.wont = request.POST.get("wont")
+        application.know = request.POST.get("know")
+        application.contacts = request.POST.get("contacts")
+        application.title = request.POST.get("title")
+        application.save()
     user_skills_wont = User_with_skill.objects.filter(User_main=user, wont_know=False)
     user_skills_know = User_with_skill.objects.filter(User_main=user, wont_know=True)
-    #username = request.GET['username']
-    #assword = request.GET['password']
-    #print(username, password)
-    #fr = request.POST["first_name"]
-    return render(request, 'base.html', {"user": user, "skills_wont":user_skills_wont, "skills_know":user_skills_know})#, context={"username":username,"password":password, "fr":fr })
+    return render(request, 'base.html', {"user": user, "skills_wont": user_skills_wont,
+                                         "skills_know": user_skills_know, "applications": applications})
 
 @login_required
 def edit_profile(request):

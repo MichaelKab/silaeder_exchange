@@ -6,7 +6,7 @@ class CustomUser(AbstractUser):
     age = models.IntegerField(default=13)
     gender = models.CharField(choices=[("М", "М"), ("Ж", "Ж")], max_length=2)
     gender_work = models.CharField(choices=[("М", "М"), ("Ж", "Ж"), ("Неважно", "Неважно")], max_length=8)
-    city = models.CharField(max_length=100)
+    city = models.CharField(max_length=100, default="-")
     contact = models.CharField(max_length=100)
 
 class Skill(models.Model):
@@ -44,7 +44,6 @@ class User_with_skill(models.Model):
 
 
 class Application(models.Model):
-    title = models.CharField(max_length=1000)
     user_creator = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     about_me = models.CharField(max_length=1000)
     wont = models.CharField(max_length=1000)

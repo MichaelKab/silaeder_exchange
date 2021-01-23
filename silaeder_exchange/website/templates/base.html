@@ -4,7 +4,7 @@
     <title>Profile</title>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400"
           rel="stylesheet">
-    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <!-- <link href="{% static 'css/base.css' %}" rel="stylesheet"> -->
     <meta charset="utf-8">
 </head>
 <body>
@@ -53,7 +53,8 @@
     .panel-default .panel-heading {
         background-color: #fff;
     }
-    .application_show_div{
+
+    .application_show_div {
         width: 400px;
         align-items: flex-start;
         border: 5px solid #0f8fee;
@@ -107,10 +108,15 @@
             <div class="panel">
                 <div class="panel-body">
                     <ul id="myTab" class="nav nav-pills">
-                        <li class="active"><a href="#detail" data-toggle="tab">О пользователе</a></li>
-                        <li class=""><a href="#contact" data-toggle="tab">Хочет научиться/Может научить</a></li>
+                        {% if get_warning %}
+                        <li class=""><a href="#detail" data-toggle="tab">О себе</a></li>
+                        <li class="active"><a href="#make_application" data-toggle="tab">Создать заявку</a></li>
+                        {% else %}
+                        <li class="active"><a href="#detail" data-toggle="tab">О себе</a></li>
                         <li class=""><a href="#make_application" data-toggle="tab">Создать заявку</a></li>
+                        {% endif %}
                         <li class=""><a href="#show_application" data-toggle="tab">Заявки</a></li>
+                        <li class=""><a href="#contact" data-toggle="tab">Хочу научиться/Могу научить</a></li>
                     </ul>
                     <div id="myTabContent" class="tab-content">
                         <hr>
@@ -118,16 +124,16 @@
                             <h4>История профиля:</h4>
                             <table class="table table-th-block">
                                 <tbody>
-                                <tr>
+                                <!--<tr>
                                     <td class="active">Дата регистрации:</td>
                                     <td>{{user.date_joined}}</td>
                                 </tr>
-                                <!--<tr><td class="active">Последняя активность:</td><td>-</td></tr>
-                                tr><td class="active">Страна:</td><td>Россия</td></tr>-->
+                                <tr><td class="active">Последняя активность:</td><td>-</td></tr>
+                                tr><td class="active">Страна:</td><td>Россия</td></tr>
                                 <tr>
                                     <td class="active">Город:</td>
                                     <td>{{user.city}}</td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                                     <td class="active">Пол:</td>
                                     <td>{{user.gender}}</td>
@@ -184,66 +190,128 @@
                         </div>
                         <div class="tab-pane fade" id="make_application">
                             <p></p>
-                            <form role="form", method="POST">
+                            <form role="form" , method="POST">
                                 {% csrf_token %}
                                 <div class="form-group">
-                                    <label>Заголовок</label>
-                                    <input name="title", type="text" class="form-control rounded" placeholder="Укажите Ваше Имя">
+                                    <label>Ваше имя</label>
+                                    <input name="title" , type="text" class="form-control rounded"
+                                           value="{{bad_ap.name}}" placeholder="Укажите Ваше Имя">
                                 </div>
                                 <div class="form-group">
                                     <label>Ваши контакты</label>
-                                    <input name="contacts", type="text" class="form-control rounded" placeholder="(+7)(095)123456 email">
+                                    <input name="contacts" , type="text" class="form-control rounded"
+                                           value="{{bad_ap.contacts}}" placeholder="(+7)(095)123456 email">
                                 </div>
                                 <div class="form-group">
                                     <label>О себе</label>
-                                    <textarea name="about_me", class="form-control rounded" style="height: 100px;"></textarea>
+                                    <textarea name="about_me" , class="form-control rounded" style="height: 100px;">{{bad_ap.about_me}}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Хочу научиться</label>
-                                    <textarea name="wont", class="form-control rounded" style="height: 100px;"></textarea>
+                                    <textarea name="wont" , class="form-control rounded" style="height: 100px;">{{bad_ap.wont}}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Могу научить</label>
-                                    <textarea name="know", class="form-control rounded" style="height: 100px;"></textarea>
+                                    <textarea name="know" , class="form-control rounded" style="height: 100px;">{{bad_ap.know}}</textarea>
                                 </div>
+                                <!--
                                 <div class="form-group">
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox"> Согласен с условиями
                                         </label>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success" data-original-title="" title="">
+                                    <button type="submit" class="btn btn-success" data-toggle="modal"
+                                            data-target="#modal-1">
                                         Отправить
+                                    </button>
+                                    <button type="button" class="btn btn-success" data-toggle="modal"
+                                            data-target="#modal-1">
+                                        Чек
                                     </button>
                                 </div>
                             </form>
+                            {% if get_warning %}
+                            <div class="warning">
+                                <p>Вы не заполнили одно из полей</p>
+                            </div>
+                            {% endif %}
+                            <div class="modal" id="modal-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            {% if get_warning %}
+                                            <h4 class="modal-title">Ошибка</h4>
+                                            {% else %}
+                                            <h4 class="modal-title">Уведомление</h4>
+                                            {% endif %}
+                                        </div>
+                                        <div class="modal-body">
+                                            {% if get_warning %}
+                                            <p>Вы заполнили не все поля</p>
+                                            {% else %}
+                                            <p>Заявка сохранена</p>
+                                            {% endif %}
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-danger" type="button" data-dismiss="modal">Закрыть
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="show_application">
                             <div class="panel-body">
-                                {% for application in applications %}
-                                <div class="application_show_div">
-                                    <h4>О себе</h4>
-                                    <p>{{application.about_me}}</p>
-                                    <h4>Могу научить</h4>
-                                    <p>{{application.know}}</p>
-                                    <h4>Хочу научиться</h4>
-                                    <p>{{application.wont}}</p>
-                                    <h4>Контакты</h4>
-                                    <p>{{application.contacts}}</p>
+                            {% for application in applications %}
+                            <div class="application_show_div">
+                                <h4>О себе</h4>
+                                <p>{{application.about_me}}</p>
+                                <h4>Могу научить</h4>
+                                <p>{{application.know}}</p>
+                                <h4>Хочу научиться</h4>
+                                <p>{{application.wont}}</p>
+                                <h4>Контакты</h4>
+                                <p>{{application.contacts}}</p>
+                                <form action="/edit/application/{{application.id}}">
                                     <button>Редактирование</button>
+                                </form>
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                        data-target="#modal-2">Уадлить
+                                </button>
+                                <div class="modal" id="modal-2">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Удаление</h4>
+
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="/edit/application/{{application.id}}/delit">
+                                                    <button>Удалить</button>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-danger" type="button" data-dismiss="modal">
+                                                    Закрыть
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                {% endfor %}
                             </div>
+                                <div>
+                            {% endfor %}
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-</div><!-- /.main -->
-</div><!-- /.container -->
+</div>
 </body>
 </html>

@@ -1,0 +1,1 @@
+web: gunicorn silaeder_exchange.wsgi --log-file -

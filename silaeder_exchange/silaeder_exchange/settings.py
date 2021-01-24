@@ -41,8 +41,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "whitenoise.storage.CompressedManifestStaticFilesStorage",
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    #"whitenoise.storage.CompressedManifestStaticFilesStorage",
+    #'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -121,10 +122,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 LOGIN_REDIRECT_URL = 'prof_page'
 LOGOUT_REDIRECT_URL = "home_page"
 ALLOWED_HOSTS = ['*']
+'''
 PROJECT_ROOT = os.path.join(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/stpip freeze > requirements.txtatic/'
@@ -133,6 +135,13 @@ STATIC_URL = '/stpip freeze > requirements.txtatic/'
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
-
-prod_db = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(prod_db)
+'''
+STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+WSGI_APPLICATION = 'silaeder_exchange.wsgi.application'
+#WSGI_APPLICATION = 'wsgi.silaeder_exchange'
+#prod_db = dj_database_url.config(conn_max_age=500)
+#DATABASES['default'].update(prod_db)

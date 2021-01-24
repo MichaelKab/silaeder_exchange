@@ -33,6 +33,6 @@ application = DjangoWhiteNoise(application)
 '''
 import os
 from django.core.wsgi import get_wsgi_application
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Silaeder_Store.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'silaeder_exchange.settings')
 
 application = get_wsgi_application()

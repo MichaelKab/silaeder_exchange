@@ -1,1 +1,1 @@
-web: gunicorn silaeder_exchange.silaeder_exchange.silaeder_exchange.wsgi --log-file -
+web: gunicorn silaeder_exchange.wsgi.py --log-file -

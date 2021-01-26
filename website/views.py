@@ -32,11 +32,6 @@ def is_not_none_warning(request, model_field, text_name_in_ht, warning):
 
 @login_required
 def cob(request):
-    print(request.META)
-    try:
-        print(request.META["HTTP_REFERER"])
-    except KeyError:
-        pass
         #print(request.META["HTTP_REFERER"])
     bad_ap = []
     user = CustomUser.objects.get(id=request.user.id)

@@ -147,3 +147,9 @@ WSGI_APPLICATION = 'silaeder_exchange.wsgi.application'
 import dj_database_url
 prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
+"""<<<<<<< HEAD
+web: gunicorn silaeder_exchange.wsgi --log-file -
+=======
+web: gunicorn silaeder_exchange.silaeder_exchange.wsgi --log-file -
+>>>>>>> 7ded67ec3c2d7505a2a4383e3240b49a3a5d901f
+silaeder_exchange.wsgi:application"""

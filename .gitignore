@@ -2,8 +2,9 @@
 /main.py
 *.sqlite3
 *.
-/silaeder_exchange/website/save/
+/website/save/
+/__pycache__/
+/website/models_b/
 /silaeder_exchange/__pycache__/
-/silaeder_exchange/website/models_b/
-/silaeder_exchange/silaeder_exchange/__pycache__/
-/silaeder_exchange/website/migrations/__pycache__/
+/website/migrations/__pycache__/
+/accounts/

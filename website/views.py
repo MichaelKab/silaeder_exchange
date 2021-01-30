@@ -128,3 +128,26 @@ def edit_application(request, pk):
         return HttpResponseRedirect("/pr")
     return render(request, "application_detail.html", {"application": application})
     # return redirect("home")
+
+
+from django.views.generic.edit import DeleteView
+
+# Relative import of GeeksModel
+from .models import Application
+
+from django.urls import path
+def delit_application(request, pk):
+    print(request.path.split('/'))
+    id_ap = request.path.split('/')[1]
+    try:
+        application = Application.objects.get(id=id_ap)
+        print(id_ap, request.user.id, application.user_creator.id)
+        if application.user_creator.id == request.user.id:
+            application.delete()
+        return HttpResponseRedirect("/pr")
+    except Application.DoesNotExist:
+        return HttpResponseRedirect("/pr")
+
+class ApplicationDeleteView(DeleteView):
+    model = Application
+    success_url = "/pr"

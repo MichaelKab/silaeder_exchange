@@ -3,9 +3,11 @@
 from django.urls import path
 from . import views
 from .views import SignUpView, ApplicationView
+from .views import ApplicationDeleteView
+
 urlpatterns = [
     path('', views.main, name="home_page"),
-
+    path('<pk>/delete/', views.delit_application),#ApplicationDeleteView.as_view(), name ="delit_application"),
     path('pr', views.cob, name="prof_page"),
     path('pr/edit', views.edit_profile, name="prof_page_edit"),
     path('signup/', SignUpView.as_view(), name=''),

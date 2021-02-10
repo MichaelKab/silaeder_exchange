@@ -1,6 +1,118 @@
-<h2>Log In</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Log In</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<style>
+    body {
+        background: url(https://bootstraptema.ru/images/bg/bg-1.png)
+    }
+
+    .with_log {
+        height: 80%;
+        width: 100%;
+        margin-top: 10px;
+        background-color: #D3CFCF;
+        padding: 12px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .center-block input {
+        border: 0;
+        width: 100%;
+        margin-left: auto;
+        margin-top: 10px;
+        margin-right: auto;
+        background-color: #D3CFCF;
+        border-bottom: 3px solid #858383;
+        outline: none;
+        font-size: 16px;
+    }
+
+    .center-block {
+        margin-left: auto;
+        margin-right: auto;
+        width: 45%;
+
+    }
+    .loose_pass{
+        text-align: right;
+        width: 100%;
+        margin-top: 15px;
+    }
+    button {
+        margin-top: 15px;
+        width: 100%;
+        background-color: white;
+        border: none;
+        color: #858383;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        border-radius: 20px;
+        -webkit-border-radius: 40px;
+        -moz-border-radius: 40px;
+        padding: 5px;
+    }
+
+    input:focus,
+    button:focus {
+        background-color: transparent;
+        outline: none;
+    }
+
+    *, input:focus {
+        outline: none !important;
+    }
+
+    * {
+        outline: none;
+    }
+
+    .form-group {
+        font-size: 20px;
+    }
+
+    .with_png {
+        background-color: #858383;
+        width: 100%;
+        height: 60%;
+        box-sizing: border-box;
+        display: block;
+        font-size: 10px;
+        float: left;
+        padding-left: 40%;
+    }
+    .with_png p{
+        width: 100%;
+        height: 60%;
+    }
+</style>
+<body>
+<div id="main">
+    <div class="with_png">
+        <p>AAAA</p>
+        <img src="">
+    </div>
+    <div class="with_log">
+        <form method="post">
+            {% csrf_token %}
+            <div class="center-block">
+                <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username"
+                       maxlength="150" required="" id="id_username" value="Логин">
+                <div class="loose_pass">Забыл пароль</div>
+            </div>
+
+            <div class="center-block">
+                <input type="password" name="password" autocomplete="current-password" required="" value="Пароль"
+                       id="id_password">
+                <button type="submit">Войти</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

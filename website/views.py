@@ -60,7 +60,7 @@ def cob(request):
     user_skills_know = User_with_skill.objects.filter(User_main=user, wont_know=True)
     return render(request, 'base.html', {"user": user, "skills_wont": user_skills_wont,
                                          "skills_know": user_skills_know, "applications": applications,
-                                        "warning": fin_warning, "bad_ap": bad_ap})
+                                        "warning": fin_warning, "bad_ap": bad_ap, "MEDIA_URL":'/media/'})
 
 
 @login_required

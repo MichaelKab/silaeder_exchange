@@ -11,6 +11,7 @@ class CustomUserCreationForm(UserCreationForm):
         model = CustomUser
         fields = ('username', "first_name", "last_name", 'email', )
 
+
 '''
 from django import forms
 from django.forms import ModelForm

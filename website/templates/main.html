@@ -5,7 +5,7 @@
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
     <meta charset="utf-8">
     <div>
-        <a href='/accounts/signup'>Registration</a>
+        <a href='/signup'>Registration</a>
     </div>
 </head>
 <body>
@@ -60,9 +60,9 @@
     <div class="row" id="real-estates-detail">
         <div class="col-lg-4 col-md-4 col-xs-12">
             {% if  request.user.is_authenticated %}
-            <a href='/accounts/login'>Личный кабинет</a>
+            <a href='/pr'>Личный кабинет</a>
             {% else %}
-            <a href='/accounts/login'>Log in</a>
+            <a href='/login'>Log in</a>
             {% endif %}
             {% for application in applications %}
             <div class="panel panel-default", id="big_panel">

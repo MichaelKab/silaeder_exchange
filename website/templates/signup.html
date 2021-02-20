@@ -65,6 +65,7 @@
     }
 
     button {
+        font-size: 12pt;
         margin-top: 15px;
         width: 100%;
         background-color: white;
@@ -73,11 +74,10 @@
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 20px;
         border-radius: 20px;
         -webkit-border-radius: 40px;
         -moz-border-radius: 40px;
-        padding: 5px;
+        padding: 6px;
     }
 
     input:focus,
@@ -114,7 +114,7 @@
 
     .png_d img {
         display: block;
-        width: 45%;
+        width: 40%;
         padding-top: 20px;
         padding-bottom: 30px;
         margin-left: auto;
@@ -136,8 +136,24 @@
         <form method="post">
             {% csrf_token %}
             <div class="center-block">
+            <!--{% if form.subject.errors %}
+                <ol>
+                <p>!!!!!!!!!!!!!!!</p>
+                    {% for error in form.subject.errors %}
+                        <li class="error"><strong>{{ error|escape }} #######</strong></li>
+                    {% endfor %}
+                </ol>
+            {% endif %}-->
                 {% if form.password2.errors %}
                     {% for error in form.password2.errors %}
+                        <li class="error"><strong>{{ error|escape }}</strong></li>
+
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="center-block">
+                {% if form.username.errors %}
+                    {% for error in form.username.errors %}
                         <li class="error"><strong>{{ error|escape }}</strong></li>
 
                     {% endfor %}

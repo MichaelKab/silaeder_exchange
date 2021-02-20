@@ -58,7 +58,8 @@ def cob(request):
         fin_warning = True
     user_skills_wont = User_with_skill.objects.filter(User_main=user, wont_know=False)
     user_skills_know = User_with_skill.objects.filter(User_main=user, wont_know=True)
-    return render(request, 'base.html', {"user": user, "skills_wont": user_skills_wont,
+    fields = [f"{user.first_name} {user.last_name}", user.age, user.contact]
+    return render(request, 'profile.html', {"user": user, "fields":fields,"skills_wont": user_skills_wont,
                                          "skills_know": user_skills_know, "applications": applications,
                                         "warning": fin_warning, "bad_ap": bad_ap, "MEDIA_URL":'/media/'})
 

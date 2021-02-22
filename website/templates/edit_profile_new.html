@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<style>
+
+    body {
+        margin: 0;
+        background-color: #D3CFCF;
+    }
+
+    .body_prof {
+        height: 100%;
+        width: 100%;
+        margin-top: 10px;
+        background-color: #D3CFCF;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .center-block input {
+        border: 0;
+        width: 100%;
+        margin-left: auto;
+        margin-top: 10px;
+        margin-right: auto;
+        background-color: #D3CFCF;
+        border-bottom: 3px solid #858383;
+        outline: none;
+        font-size: 16px;
+    }
+
+    button {
+        font-size: 12pt;
+        margin-top: 15px;
+        width: 100%;
+        background-color: white;
+        border: none;
+        color: #858383;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 20px;
+        -webkit-border-radius: 40px;
+        -moz-border-radius: 40px;
+        padding: 6px;
+        margin-bottom: 10px;
+    }
+
+    input:focus,
+    button:focus {
+        background-color: transparent;
+        outline: none;
+    }
+
+    *, input:focus {
+        outline: none !important;
+    }
+
+    * {
+        outline: none;
+    }
+
+    .form-group {
+        font-size: 20px;
+    }
+
+    .head_prof {
+        background-color: #858383;
+        width: 100%;
+        height: 50%;
+        box-sizing: border-box;
+        display: block;
+    }
+
+    .png_d {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .png_d img {
+        display: block;
+        width: 40%;
+        padding-top: 20px;
+        padding-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .error {
+        color: indianred;
+    }
+
+    .me {
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        height: 100%;
+    }
+
+    .me_head {
+        margin-right: auto;
+        width: 20px;
+        margin-left: 10%;
+    }
+
+    .about_profile {
+
+        margin-left: auto;
+        margin-right: auto;
+        background: #FFFFFF;
+        border-radius: 20px;
+        -webkit-border-radius: 40px;
+        -moz-border-radius: 40px;
+        padding: 14px;
+        margin-top: 8px;
+    }
+
+    .field {
+        -webkit-border-radius: 40px;
+        -moz-border-radius: 40px;
+        padding: 12px;
+        background: #858383;
+        color: white;
+        width: 60px;
+        text-align: center;
+        top: 100%;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .field_ac {
+        width: 300px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .tr_f {
+        border-top: 10px;
+        width: 100%;
+        /*начинается_Head_prof________________*/
+    }
+
+    .buttons_right {
+        width: 400px;
+        margin-left: auto;
+    }
+
+    .buttons_right form {
+        width: 100px;
+    }
+
+    .buttons_right form {
+        display: inline-block;
+        margin-left: 15px;
+    }
+
+    .buttons_right form button {
+        width: 100px;
+        color: #858383;
+    }
+
+    .name {
+        margin-left: auto;
+        margin-right: auto;
+        width: 400px;
+    }
+
+    .name button {
+        width: 50%;
+        margin-left: 100px;
+        margin-right: auto;
+    }
+
+    .name h2 {
+        text-align: center;
+    }
+
+    textarea {
+        width: 70%; /* Ширина поля в процентах */
+        height: 50%; /* Высота поля в пикселах */
+        resize: none; /* Запрещаем изменять размер */
+        vertical-align: middle;
+    }
+
+    input {
+        width: 40%;
+    }
+
+    .inp_cont {
+        width: 60%;
+    }
+</style>
+<body>
+<div class="head_prof">
+    <div class="buttons_right">
+        <form action="/" target="_blank">
+            <button>Главная</button>
+        </form>
+        <form action="/" target="_blank">
+            <button>Мои заявки</button>
+        </form>
+        <form action="/" target="_blank">
+            <button>Создать</button>
+        </form>
+    </div>
+    <div class="name">
+        <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+        <form action="/" type="submit" form="edit_prof" target="_blank">
+            <button>Сохранить</button>
+        </form>
+    </div>
+</div>
+<div class="body_prof">
+    <div class="me">
+        <div class="about_profile">
+            <form id="edit_prof" action="" method="post">
+                <div class="tr_f">
+                    <p class="field">ФИО</p>
+                    <input type="text" name="last_name" value="{{ person.last_name }}"/>
+                    <input type="text" name="name" value="{{ person.first_name }}"/>
+                </div>
+                <div class="tr_f">
+                    <p class="field">О себе</p>
+                    <textarea type="password" name="aboutme" form="auth" value="{{ person.aboutme }}"></textarea>
+                </div>
+                <div class="tr_f">
+                    <p class="field">Учу</p>
+                    <textarea type="password" name="aboutme" form="auth" value="{{ person.aboutme }}"></textarea>
+
+                </div>
+                <div class="tr_f">
+                    <p class="field">Учусь</p>
+                    <textarea type="password" name="aboutme" form="auth" value="{{ person.aboutme }}"></textarea>
+
+
+                </div>
+                <div class="tr_f">
+                    <p class="field">Контакты</p>
+                    <input type="text" class="inp_cont" name="contact" value="{{ person.contact }}"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

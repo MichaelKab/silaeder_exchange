@@ -91,7 +91,7 @@ def edit_profile(request):
             person.save()
             return HttpResponseRedirect("/main/pr")
         else:
-            return render(request, "edit_profile.html", {"person": person})
+            return render(request, "edit_profile_new.html", {"person": person})
     except CustomUser.DoesNotExist:
         return HttpResponseNotFound("<h2>Person not found</h2>")
 

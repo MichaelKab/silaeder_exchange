@@ -6,12 +6,14 @@
 </head>
 <style>
     input:-webkit-autofill {
-    color: #ffffff !important;
-}
+        color: #ffffff !important;
+    }
+
     body {
         background: #D3CFCF;
         margin: 0;
     }
+
     .with_log {
         height: 100%;
         width: 100%;
@@ -22,18 +24,20 @@
         margin-left: auto;
         margin-right: auto;
     }
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus,
-select:-webkit-autofill,
-select:-webkit-autofill:hover,
-select:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0 1000px #D3CFCF inset;
-  transition: background-color 5000s ease-in-out 0s;
-}
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus {
+        -webkit-box-shadow: 0 0 0 1000px #D3CFCF inset;
+        transition: background-color 5000s ease-in-out 0s;
+    }
+
     .center-block input {
         border: 0;
         width: 100%;
@@ -52,12 +56,14 @@ select:-webkit-autofill:focus {
         width: 45%;
 
     }
-    .loose_pass{
-        color: #FFFFFF;
+
+    .loose_pass {
+        color: #858383;
         text-align: right;
         width: 100%;
         margin-top: 15px;
     }
+
     button {
         font-size: 15pt;
         margin-top: 15px;
@@ -99,12 +105,14 @@ select:-webkit-autofill:focus {
         box-sizing: border-box;
         display: block;
     }
-    .png_d{
+
+    .png_d {
         width: 100%;
         margin-left: auto;
         margin-right: auto;
-        }
-    .png_d img{
+    }
+
+    .png_d img {
         display: block;
         width: 40%;
         padding-top: 20px;
@@ -112,15 +120,21 @@ select:-webkit-autofill:focus {
         margin-left: auto;
         margin-right: auto;
     }
-    .error-message{
+
+    .error-message {
         color: indianred;
+    }
+
+    a {
+        text-decoration: none; /* Отменяем подчеркивание у ссылки */
+        color: #858383;
     }
 </style>
 <body>
 <div id="main">
     <div class="with_png">
         <div class="png_d">
-        <img src="/static/prev.jpg" alt="My image">
+            <img src="/static/prev.jpg" alt="My image">
         </div>
     </div>
     <div class="with_log">
@@ -132,7 +146,9 @@ select:-webkit-autofill:focus {
                 {% endfor %}
                 <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username"
                        maxlength="150" required="" id="id_username" placeholder="Логин">
-                <div class="loose_pass">Уже зарегистрированы?</div>
+                <div class="loose_pass">
+                    <a href="/signup">Ещё не зарегистрированы?</a>
+                </div>
             </div>
 
             <div class="center-block">

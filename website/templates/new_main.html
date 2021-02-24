@@ -11,6 +11,7 @@
         margin: 0;
         padding: 0;
         width: 100%;
+        height: 120px;
     }
 
     .main {
@@ -65,6 +66,9 @@
     .buttons_right {
         width: 300px;
         margin-left: auto;
+        position: absolute;
+        top:0;
+        right:0;
     }
 
     .buttons_right form {
@@ -105,8 +109,25 @@
         padding: 6px;
         margin-bottom: 10px;
     }
+    .text{
+        margin-right: auto;
+        margin-top: 0;
+        padding-top: 30px;
+        padding-left: 20%;
+        font-size: 30px;
+    }
+    .tx{
+        display: block;
+        position: absolute;
+            top:10px;
+        left:0;
+        width: 60%;
+    }
 </style>
 <div class="up_head">
+    <div class="tx">
+    <p class="text">Сайт для обмена знаниями</p>
+    </div>
     <div class="buttons_right">
         <!--<form action="/" target="_blank">
             <button>Главная</button>

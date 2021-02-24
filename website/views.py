@@ -14,7 +14,7 @@ from django.views.generic.detail import DetailView
 
 def main(request):
     applications = Application.objects.all()
-    print(applications)
+    #print(applications)
     return render(request, 'main.html', {"applications": applications})
 
 
@@ -64,12 +64,19 @@ def cob(request):
                                         "warning": fin_warning, "bad_ap": bad_ap, "MEDIA_URL":'/media/'})
 
 
+def check_is_not_none(request, model_field, text_name_in_ht):
+    field = request.POST.get(text_name_in_ht)
+    if field is not str():
+        model_field = field
+    return model_field
+
 @login_required
 def edit_profile(request):
     try:
         person = CustomUser.objects.get(id=request.user.id)
         if request.method == "POST":
-            print(request.POST)
+            print("##########################")
+            #print(request.POST)
             name = request.POST.get("name")
             if name is not None:
                 person.first_name = name
@@ -85,13 +92,20 @@ def edit_profile(request):
             contact = request.POST.get("contact")
             if contact is not None:
                 person.contact = contact
-            city = request.POST.get("city")
-            if city is not None:
-                person.city = city
+            skills_wont = request.POST.get("skills_wont")
+            if skills_wont is not None:
+                person.skills_wont = skills_wont
+            skills_know = request.POST.get("skills_know")
+            if skills_know is not None:
+                person.skills_know = skills_know
+            about_me = request.POST.get("about_me")
+            if about_me is not None:
+                person.about_me = about_me
+            print("!!!!!!!!!!!!!!", name, last_name, skills_know, skills_wont, '3333333333333')
             person.save()
-            return HttpResponseRedirect("/main/pr")
+            return HttpResponseRedirect("/pr")
         else:
-            return render(request, "edit_profile_new.html", {"person": person})
+            return render(request, "edit_profile_new.html", {"person": person, "user":CustomUser.objects.get(id=request.user.id)})
     except CustomUser.DoesNotExist:
         return HttpResponseNotFound("<h2>Person not found</h2>")
 
@@ -106,20 +120,12 @@ class ApplicationView(DetailView):
     model = Application
     template_name = "application_detail.html"
 
-
-def check_is_not_none(request, model_field, text_name_in_ht):
-    field = request.POST.get(text_name_in_ht)
-    if field is not str():
-        model_field = field
-    return model_field
-
-
 def edit_application(request, pk):
     id_ap = request.path.split('/')[-2]
-    print(id_ap)
+    #print(id_ap)
     template_name = "application_detail.html"
     application = Application.objects.get(id=id_ap)
-    print(application)
+    #print(application)
     if request.method == 'POST':
         application.about_me = check_is_not_none(request, application.about_me, "about_me")
         application.wont = check_is_not_none(request, application.wont, "wont")

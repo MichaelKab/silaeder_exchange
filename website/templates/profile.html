@@ -209,8 +209,8 @@
     </div>
     <div class="name">
         <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-        <form action="/edit" target="_blank">
-            <button>Рекдактировать</button>
+        <form action="/pr/edit" target="_blank">
+            <button>Редактировать</button>
         </form>
     </div>
 </div>
@@ -225,7 +225,7 @@
             <div class="tr_f">
                 <div class="margin_cast"></div>
                 <p class="field">О себе</p>
-                <p class="field_ac">{{ user.about }}</p>
+                <p class="field_ac">{{ user.about_me }}</p>
             </div>
             <div class="tr_f">
                 <p class="field">Учу</p>
@@ -233,7 +233,7 @@
             </div>
             <div class="tr_f">
                 <p class="field">Учусь</p>
-                <p class="field_ac">{{ user.user_skills_know }}</p>
+                <p class="field_ac">{{ user.skills_wont }}</p>
             </div>
             <div class="tr_f">
                 <p class="field">Контакты</p>

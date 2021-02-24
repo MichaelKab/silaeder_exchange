@@ -210,15 +210,14 @@
     </div>
     <div class="name">
         <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-        <form action="/" type="submit" form="edit_prof" target="_blank">
-            <button>Сохранить</button>
-        </form>
+            <button type="submit" form="edit_prof" >Сохранить</button>
     </div>
 </div>
 <div class="body_prof">
     <div class="me">
         <div class="about_profile">
-            <form id="edit_prof" action="" method="post">
+            <form id="edit_prof" method="POST">
+                {% csrf_token %}
                 <div class="tr_f">
                     <p class="field">ФИО</p>
                     <input type="text" name="last_name" value="{{ person.last_name }}"/>
@@ -226,16 +225,16 @@
                 </div>
                 <div class="tr_f">
                     <p class="field">О себе</p>
-                    <textarea type="password" name="aboutme" form="auth" value="{{ person.aboutme }}"></textarea>
+                    <textarea type="text" name="about_me">{{ user.about_me }}</textarea>
                 </div>
                 <div class="tr_f">
                     <p class="field">Учу</p>
-                    <textarea type="password" name="aboutme" form="auth" value="{{ person.aboutme }}"></textarea>
+                    <textarea type="text" name="skills_know">{{ person.skills_know }}</textarea>
 
                 </div>
                 <div class="tr_f">
                     <p class="field">Учусь</p>
-                    <textarea type="password" name="aboutme" form="auth" value="{{ person.aboutme }}"></textarea>
+                    <textarea type="text" name="skills_wont">{{ person.skills_wont }}</textarea>
 
 
                 </div>

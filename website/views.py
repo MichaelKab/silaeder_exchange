@@ -14,8 +14,9 @@ from django.views.generic.detail import DetailView
 
 def main(request):
     applications = Application.objects.all()
-    #print(applications)
-    return render(request, 'main.html', {"applications": applications})
+    users = CustomUser.objects.filter(can_see=True)
+    # print(applications)
+    return render(request, 'new_main.html', {"users": users})
 
 
 def is_not_none_warning(request, model_field, text_name_in_ht, warning):
@@ -32,7 +33,7 @@ def is_not_none_warning(request, model_field, text_name_in_ht, warning):
 
 @login_required
 def cob(request):
-        #print(request.META["HTTP_REFERER"])
+    # print(request.META["HTTP_REFERER"])
     bad_ap = []
     user = CustomUser.objects.get(id=request.user.id)
     applications = Application.objects.filter(user_creator=request.user.id)
@@ -46,12 +47,12 @@ def cob(request):
         application.wont, warning = is_not_none_warning(request, application.wont, "wont", warning)
         application.know, warning = is_not_none_warning(request, application.know, "know", warning)
         application.contacts, warning = is_not_none_warning(request, application.contacts, "contacts", warning)
-        #print(warning)
+        # print(warning)
         if warning == 0:
             application.save()
         else:
             bad_ap = application
-    #print(warning, "!!!")
+        # print(warning, "!!!")
     if warning == 0:
         fin_warning = False
     else:
@@ -59,9 +60,9 @@ def cob(request):
     user_skills_wont = User_with_skill.objects.filter(User_main=user, wont_know=False)
     user_skills_know = User_with_skill.objects.filter(User_main=user, wont_know=True)
     fields = [f"{user.first_name} {user.last_name}", user.age, user.contact]
-    return render(request, 'profile.html', {"user": user, "fields":fields,"skills_wont": user_skills_wont,
-                                         "skills_know": user_skills_know, "applications": applications,
-                                        "warning": fin_warning, "bad_ap": bad_ap, "MEDIA_URL":'/media/'})
+    return render(request, 'profile.html', {"user": user, "fields": fields, "skills_wont": user_skills_wont,
+                                            "skills_know": user_skills_know, "applications": applications,
+                                            "warning": fin_warning, "bad_ap": bad_ap, "MEDIA_URL": '/media/'})
 
 
 def check_is_not_none(request, model_field, text_name_in_ht):
@@ -70,13 +71,14 @@ def check_is_not_none(request, model_field, text_name_in_ht):
         model_field = field
     return model_field
 
+
 @login_required
 def edit_profile(request):
     try:
         person = CustomUser.objects.get(id=request.user.id)
         if request.method == "POST":
             print("##########################")
-            #print(request.POST)
+            # print(request.POST)
             name = request.POST.get("name")
             if name is not None:
                 person.first_name = name
@@ -105,7 +107,8 @@ def edit_profile(request):
             person.save()
             return HttpResponseRedirect("/pr")
         else:
-            return render(request, "edit_profile_new.html", {"person": person, "user":CustomUser.objects.get(id=request.user.id)})
+            return render(request, "edit_profile_new.html",
+                          {"person": person, "user": CustomUser.objects.get(id=request.user.id)})
     except CustomUser.DoesNotExist:
         return HttpResponseNotFound("<h2>Person not found</h2>")
 
@@ -120,12 +123,13 @@ class ApplicationView(DetailView):
     model = Application
     template_name = "application_detail.html"
 
+
 def edit_application(request, pk):
     id_ap = request.path.split('/')[-2]
-    #print(id_ap)
+    # print(id_ap)
     template_name = "application_detail.html"
     application = Application.objects.get(id=id_ap)
-    #print(application)
+    # print(application)
     if request.method == 'POST':
         application.about_me = check_is_not_none(request, application.about_me, "about_me")
         application.wont = check_is_not_none(request, application.wont, "wont")
@@ -143,6 +147,8 @@ from django.views.generic.edit import DeleteView
 from .models import Application
 
 from django.urls import path
+
+
 def delit_application(request, pk):
     print(request.path.split('/'))
     id_ap = request.path.split('/')[1]
@@ -154,6 +160,18 @@ def delit_application(request, pk):
         return HttpResponseRedirect("/pr")
     except Application.DoesNotExist:
         return HttpResponseRedirect("/pr")
+
+
+def activate(request):
+    user = CustomUser.objects.get(id=request.user.id)
+    if request.user.is_authenticated:
+        if user.can_see:
+            user.can_see = False
+        else:
+            user.can_see = True
+        user.save()
+    return HttpResponseRedirect("/pr")
+
 
 class ApplicationDeleteView(DeleteView):
     model = Application

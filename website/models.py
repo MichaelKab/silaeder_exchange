@@ -9,6 +9,7 @@ class CustomUser(AbstractUser):
     about_me = models.CharField(max_length=10000, default="-")
     city = models.CharField(max_length=100, default="-")
     contact = models.CharField(max_length=100, default="0000000")
+    can_see = models.BooleanField(default=False)
 
 class Skill(models.Model):
     name_skill = models.CharField(max_length=100, default="дизайн")

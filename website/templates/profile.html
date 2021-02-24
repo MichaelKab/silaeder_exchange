@@ -40,13 +40,6 @@
 
     }
 
-    .loose_pass {
-        color: #FFFFFF;
-        text-align: right;
-        width: 100%;
-        margin-top: 15px;
-    }
-
     button {
         font-size: 12pt;
         margin-top: 15px;
@@ -110,10 +103,11 @@
     }
 
     .me {
-        width: 500px;
+        #width: 500px;
         margin-left: auto;
         margin-right: auto;
         height: 100%;
+        width: 90%;
     }
 
     .me_head {
@@ -140,18 +134,20 @@
         padding: 12px;
         background: #858383;
         color: white;
-        width: 60px;
+        width: 80px;
         text-align: center;
         top: 100%;
         display: inline-block;
         vertical-align: middle;
+        font-size: 20px;
     }
 
     .field_ac {
         margin-left: 10px;
-        width: 300px;
+        width: 70%;
         display: inline-block;
         vertical-align: middle;
+        font-size: 20px;
     }
 
     .tr_f {
@@ -161,7 +157,7 @@
     }
 
     .buttons_right {
-        width: 400px;
+        width: 500px;
         margin-left: auto;
     }
 
@@ -193,7 +189,30 @@
 
     .name h2 {
         text-align: center;
+        font-size: 30pt;
     }
+    .HELP_CENTR{
+        text-align: center;
+        padding-bottom: 12px;
+        font-size: 20pt;
+        border: none;
+        color: #D3CFCF;
+
+    }
+    .main_b{
+        height: 32px;
+    }
+    .on{
+        background: green;
+        padding: 10px;
+        color: white;
+    }
+    .off{
+        background: black;
+        color: white;
+        padding: 10px;
+    }
+
 </style>
 <body>
 <div class="head_prof">
@@ -207,12 +226,26 @@
         <form action="/" target="_blank">
             <button>Создать</button>
         </form>
+         <form action="/pr/exit" target="_blank">
+            <button>Выйти</button>
+        </form>
     </div>
     <div class="name">
         <h2>{{ user.first_name }} {{ user.last_name }}</h2>
         <form action="/pr/edit" target="_blank">
-            <button>Редактировать</button>
+            <button class='main_b'>Редактировать</button>
         </form>
+        {% if user.can_see %}
+        <form action="/activate" target="_blank">
+            <button class="on">Отключить профиль</button>
+            <p class="HELP_CENTR">Сейчас ваш профиль виден</p>
+        </form>
+        {% else %}
+            <form action="/activate" type="submit" target="_blank">
+            <button class="off">Активировать профиль</button>
+            <p class="HELP_CENTR">Сейчас ваш профиль не виден</p>
+        </form>
+        {% endif %}
     </div>
 </div>
 <div class="body_prof">

@@ -167,18 +167,17 @@
                 {% endif %}
             </div>
             <div class="center-block">
-
                 <input type="text" name="username" maxlength="150" autofocus="" required="" id="id_username"
-                       placeholder="Логин" value="">
+                       placeholder="Логин" value="{{ form.username.value }}">
             </div>
             <div class="center-block">
-                <input type="text" name="first_name" required="" id="id_first_name" placeholder="Имя" value="">
+                <input type="text" name="first_name" required="" id="id_first_name" placeholder="Имя" value="{{ form.first_name.value }}">
             </div>
             <div class="center-block">
-                <input type="text" name="last_name" required="" id="id_last_name" placeholder="Фамилия" value="">
+                <input type="text" name="last_name" required="" id="id_last_name" placeholder="Фамилия" value="{{ form.last_name.value }}">
             </div>
             <div class="center-block">
-                <input type="email" name="email" required="" id="id_email" placeholder="Email" value="">
+                <input type="email" name="email" required="" id="id_email" placeholder="Email" value="{{ form.email.value }}">
             </div>
             <div class="center-block">
                 <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1"

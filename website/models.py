@@ -4,8 +4,9 @@ from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
     age = models.IntegerField(default=13)
-    gender = models.CharField(choices=[("М", "М"), ("Ж", "Ж")], max_length=2, default=("М", "М"))
-    gender_work = models.CharField(choices=[("М", "М"), ("Ж", "Ж"), ("Неважно", "Неважно")], max_length=8, default=("Неважно", "Неважно"))
+    skills_wont = models.CharField(max_length=20000, default="-")
+    skills_know = models.CharField(max_length=20000, default="-")
+    about_me = models.CharField(max_length=10000, default="-")
     city = models.CharField(max_length=100, default="-")
     contact = models.CharField(max_length=100, default="0000000")
 

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    .up_head {
+        background-color: #858383;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 60px;
+    }
+
+    .main {
+        background-color: #D3CFCF;
+    }
+    body{
+        background-color: #D3CFCF;
+        margin: 0;
+    }
+    .content {
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        position: center;
+        background: #FFFFFF;
+        border-radius: 20px;
+        -webkit-border-radius: 40px;
+        -moz-border-radius: 40px;
+        padding: 14px;
+        padding-top: 15px;
+        margin-top: 24px;
+        margin-bottom: 32px;
+
+    }
+
+    .theme {
+        border-top: 10px;
+        width: 100%;
+        /*начинается_Head_prof________________*/
+    }
+
+    .title {
+        -webkit-border-radius: 40px;
+        -moz-border-radius: 40px;
+        padding: 12px;
+        background: #858383;
+        color: white;
+        width: 60px;
+        text-align: center;
+        top: 100%;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .about {
+        margin-left: 10px;
+        width: 300px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .buttons_right {
+        width: 300px;
+        margin-left: auto;
+        position: absolute;
+        top:0;
+        right:0;
+    }
+
+    .buttons_right form {
+        display: inline-block;
+        margin-left: 15px;
+    }
+
+
+    .sm_button {
+        font-size: 12pt;
+        margin-top: 15px;
+        width: 100px;
+        background-color: white;
+        border: none;
+        color: #858383;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 20px;
+        -webkit-border-radius: 40px;
+        -moz-border-radius: 40px;
+        padding: 6px;
+        margin-bottom: 10px;
+    }
+    .long_button{
+        font-size: 12pt;
+        margin-top: 15px;
+        width: 140px;
+        background-color: white;
+        border: none;
+        color: #858383;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 20px;
+        -webkit-border-radius: 40px;
+        -moz-border-radius: 40px;
+        padding: 6px;
+        margin-bottom: 10px;
+    }
+    .text{
+        margin-right: auto;
+        margin-top: 0;
+        padding-top: 30px;
+        padding-left: 20%;
+        font-size: 30px;
+    }
+    .tx{
+        display: block;
+        position: absolute;
+            top:10px;
+        left:0;
+        width: 60%;
+    }
+</style>
+<div class="up_head">
+    <div class="buttons_right">
+        <!--<form action="/" target="_blank">
+            <button>Главная</button>
+        </form>
+        <form action="/" target="_blank">
+            <button>Мои заявки</button>
+        </form>
+        <form action="/" target="_blank">
+            <button>Создать</button>
+        </form>-->
+        {% if  request.user.is_authenticated %}
+            <form action="/pr" target="_blank">
+                <button class="long_button">Личный кабинет</button>
+            </form>
+            <form action="/pr/exit" target="_blank">
+                <button class="sm_button">Выйти</button>
+            </form>
+        {% else %}
+            <form action="/login" target="_blank">
+                <button class="sm_button">Войти</button>
+            </form>
+            <form action="/signup" target="_blank">
+                <button class="long_button">Регистрация</button>
+            </form>
+
+        {% endif %}
+    </div>
+</div>
+<div class="main">
+        <div class="content">
+            <div class="theme">
+                <p class="title">ФИО</p>
+                <p class="about">{{ user.first_name }} {{ user.last_name }}</p>
+            </div>
+            <div class="theme">
+                <div class="margin_cast"></div>
+                <p class="title">О себе</p>
+                <p class="about">{{ user.about_me }}</p>
+            </div>
+            <div class="theme">
+                <p class="title">Учу</p>
+                <p class="about">{{ user.skills_know }}</p>
+            </div>
+            <div class="theme">
+                <p class="title">Учусь</p>
+                <p class="about">{{ user.skills_wont }}</p>
+            </div>
+            <div class="theme">
+                <p class="title">Контакты</p>
+                <p class="about">{{ user.contact }}</p>
+            </div>
+        </div>
+</div>
+</body>
+</html>

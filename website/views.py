@@ -182,7 +182,7 @@ class ApplicationDeleteView(DeleteView):
 
 
 def show_all_inf(request, pk):
-    print(pk, "#####")
+    print(pk, "#####",request.user.id )
     print(request)
     try:
         user = CustomUser.objects.get(id=pk)

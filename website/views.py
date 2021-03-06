@@ -31,7 +31,7 @@ def is_not_none_warning(request, model_field, text_name_in_ht, warning):
     return model_field, warning
 
 
-@login_required
+@login_required(login_url="/login")
 def cob(request):
     # print(request.META["HTTP_REFERER"])
     bad_ap = []
@@ -72,12 +72,12 @@ def check_is_not_none(request, model_field, text_name_in_ht):
     return model_field
 
 
-@login_required
+@login_required(login_url="/login")
 def edit_profile(request):
     try:
         person = CustomUser.objects.get(id=request.user.id)
         if request.method == "POST":
-            print("##########################")
+            # print("##########################")
             # print(request.POST)
             name = request.POST.get("name")
             if name is not None:
@@ -103,12 +103,15 @@ def edit_profile(request):
             about_me = request.POST.get("about_me")
             if about_me is not None:
                 person.about_me = about_me
+            short_description = request.POST.get("short_description")
+            if short_description is not None:
+                person.short_description = short_description
             print("!!!!!!!!!!!!!!", name, last_name, skills_know, skills_wont, '3333333333333')
             person.save()
             return HttpResponseRedirect("/pr")
         else:
             return render(request, "edit_profile_new.html",
-                          {"person": person, "user": CustomUser.objects.get(id=request.user.id)})
+                          {"user": CustomUser.objects.get(id=request.user.id)})
     except CustomUser.DoesNotExist:
         return HttpResponseNotFound("<h2>Person not found</h2>")
 
@@ -176,3 +179,19 @@ def activate(request):
 class ApplicationDeleteView(DeleteView):
     model = Application
     success_url = "/pr"
+
+
+def show_all_inf(request, pk):
+    print(pk, "#####")
+    print(request)
+    try:
+        user = CustomUser.objects.get(id=pk)
+        if user.can_see:
+            print(user.id, user.about_me)
+            print(user.skills_wont)
+            return render(request, "detail_application.html", {"application": user})
+        else:
+            return HttpResponseRedirect("/")
+    except CustomUser.DoesNotExist:
+        return HttpResponseRedirect("/")
+    print(user, user.id)

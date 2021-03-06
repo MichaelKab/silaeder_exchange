@@ -223,8 +223,12 @@
                 {% csrf_token %}
                 <div class="tr_f">
                     <p class="field">ФИО</p>
-                    <input type="text" name="last_name" value="{{ person.last_name }}"/>
-                    <input type="text" name="name" value="{{ person.first_name }}"/>
+                    <input type="text" name="last_name" value="{{ user.last_name }}"/>
+                    <input type="text" name="name" value="{{ user.first_name }}"/>
+                </div>
+                <div class="tr_f">
+                    <p class="field">Краткое описание</p>
+                    <textarea maxlength="400" type="text" name="short_description">{{ user.short_description }}</textarea>
                 </div>
                 <div class="tr_f">
                     <p class="field">О себе</p>

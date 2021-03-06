@@ -10,10 +10,11 @@ urlpatterns = [
     path('', views.main, name="home_page"),
     path('<pk>/delete/', views.delit_application),
     path('pr', views.cob, name="prof_page"),
+    path('<pk>/show/', views.show_all_inf),
     path('pr/edit', views.edit_profile, name="prof_page_edit"),
     path('signup/', SignUpView.as_view(), name=''),
-    path('signup/', SignUpView.as_view(), name=''),
-    path('edit/application/<int:pk>/', views.edit_application, name='post-detail'),
+    #path('signup/', SignUpView.as_view(), name=''),
+    #path('edit/application/<int:pk>/', views.edit_application, name='post-detail'),
     path('pr/exit/', authViews.LogoutView.as_view(next_page='/'), name='exit'),
     path("activate", views.activate)
     # path('', views.main, name="home_page"),

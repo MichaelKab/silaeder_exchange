@@ -58,7 +58,7 @@
 
     .about {
         margin-left: 10px;
-        width: 300px;
+        width: 80%;
         display: inline-block;
         vertical-align: middle;
     }
@@ -123,6 +123,19 @@
         left:0;
         width: 60%;
     }
+    .href_detail{
+        color: #0f8fee;
+        width: 100%;
+        background: white;
+    }
+    .href_detail a{
+        background: #0f8fee;
+        #float:right;
+        width: 100px;
+        text-decoration: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
 </style>
 <div class="up_head">
     <div class="tx">
@@ -165,10 +178,10 @@
             </div>
             <div class="theme">
                 <div class="margin_cast"></div>
-                <p class="title">О себе</p>
-                <p class="about">{{ user.about_me }}</p>
+                <p class="title">Краткое описание</p>
+                <p class="about">{{ user.short_description }}</p>
             </div>
-            <div class="theme">
+            <!--<div class="theme">
                 <p class="title">Учу</p>
                 <p class="about">{{ user.skills_know }}</p>
             </div>
@@ -179,6 +192,9 @@
             <div class="theme">
                 <p class="title">Контакты</p>
                 <p class="about">{{ user.contact }}</p>
+            </div>-->
+            <div class="href_detail">
+        <a href="/{{ user.id }}/show" class="title">Подробно</a>
             </div>
         </div>
     {% endfor %}

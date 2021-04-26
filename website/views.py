@@ -14,8 +14,19 @@ from django.views.generic.detail import DetailView
 
 def main(request):
     applications = Application.objects.all()
-    users = CustomUser.objects.filter(can_see=True)
-    # print(applications)
+    all_users = CustomUser.objects.filter(can_see=True)
+    users = []
+    if request.method == "POST":
+        keyword = request.POST['find']
+        for i in all_users:
+            if keyword in i.skills_know:
+                users.append(i)
+            elif keyword in i.skills_wont:
+                users.append(i)
+            elif keyword in i.about_me:
+                users.append(i)
+    else:
+        users = all_users
     return render(request, 'new_main.html', {"users": users})
 
 

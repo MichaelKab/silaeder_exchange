@@ -27,7 +27,7 @@ def main(request):
                 users.append(i)
     else:
         users = all_users
-    return render(request, 'new_main.html', {"users": users})
+    return render(request, 'en_new_main.html', {"users": users})
 
 
 def is_not_none_warning(request, model_field, text_name_in_ht, warning):
@@ -71,7 +71,7 @@ def cob(request):
     user_skills_wont = User_with_skill.objects.filter(User_main=user, wont_know=False)
     user_skills_know = User_with_skill.objects.filter(User_main=user, wont_know=True)
     fields = [f"{user.first_name} {user.last_name}", user.age, user.contact]
-    return render(request, 'profile.html', {"user": user, "fields": fields, "skills_wont": user_skills_wont,
+    return render(request, 'en_profile.html', {"user": user, "fields": fields, "skills_wont": user_skills_wont,
                                             "skills_know": user_skills_know, "applications": applications,
                                             "warning": fin_warning, "bad_ap": bad_ap, "MEDIA_URL": '/media/'})
 
@@ -121,7 +121,7 @@ def edit_profile(request):
             person.save()
             return HttpResponseRedirect("/pr")
         else:
-            return render(request, "edit_profile_new.html",
+            return render(request, "en_edit_profile_new.html",
                           {"user": CustomUser.objects.get(id=request.user.id)})
     except CustomUser.DoesNotExist:
         return HttpResponseNotFound("<h2>Person not found</h2>")
@@ -130,7 +130,7 @@ def edit_profile(request):
 class SignUpView(generic.CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('login')
-    template_name = 'signup.html'
+    template_name = 'en_signup.html'
 
 
 class ApplicationView(DetailView):

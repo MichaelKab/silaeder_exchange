@@ -58,14 +58,14 @@
     }
 
     .loose_pass {
-        color: #858383;
+        color: #FFFFFF;
         text-align: right;
         width: 100%;
         margin-top: 15px;
     }
 
     button {
-        font-size: 15pt;
+        font-size: 12pt;
         margin-top: 15px;
         width: 100%;
         background-color: white;
@@ -74,10 +74,10 @@
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        border-radius: 20px;
-        -webkit-border-radius: 40px;
-        -moz-border-radius: 40px;
-        padding: 5px;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        padding: 10px;
     }
 
     input:focus,
@@ -121,13 +121,19 @@
         margin-right: auto;
     }
 
-    .error-message {
+    .error {
         color: indianred;
     }
-
-    a {
+    a{
         text-decoration: none; /* Отменяем подчеркивание у ссылки */
         color: #858383;
+    }
+    .center-block_a{
+        margin-left: auto;
+        margin-right: auto;
+        width: 45%;
+        margin-top: 10px;
+        display: block;
     }
 </style>
 <body>
@@ -145,16 +151,16 @@
                     <span class="error-message">{{ error }}</span>
                 {% endfor %}
                 <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username"
-                       maxlength="150" required="" id="id_username" placeholder="Логин">
+                       maxlength="150" required="" id="id_username" placeholder="Username" style="font-size: 25px">
                 <div class="loose_pass">
-                    <a href="/signup">Ещё не зарегистрированы?</a>
+                    <a href="/signup">Create a New Account</a>
                 </div>
             </div>
 
             <div class="center-block">
-                <input type="password" name="password" autocomplete="current-password" required="" placeholder="Пароль"
-                       id="id_password">
-                <button type="submit">Войти</button>
+                <input type="password" name="password" autocomplete="current-password" required="" placeholder="Password"
+                       id="id_password" style="font-size: 25px">
+                <button type="submit">Log In</button>
             </div>
         </form>
     </div>

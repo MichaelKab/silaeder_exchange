@@ -136,7 +136,6 @@
         display: block;
     }
 </style>
-
 <body>
 <div id="main">
     <div class="with_png">
@@ -148,66 +147,23 @@
         <form method="post">
             {% csrf_token %}
             <div class="center-block">
-            <!--{% if form.subject.errors %}
-                <ol>
-                <p>!!!!!!!!!!!!!!!</p>
-                    {% for error in form.subject.errors %}
-                        <li class="error"><strong>{{ error|escape }} #######</strong></li>
-                    {% endfor %}
-                </ol>
-            {% endif %}-->
-                {% if form.password2.errors %}
-                    {% for error in form.password2.errors %}
-                        <li class="error"><strong>{{ error|escape }}</strong></li>
-
-                    {% endfor %}
-                {% endif %}
-            </div>
-            <div class="center-block">
-                {% if form.username.errors %}
-                    {% for error in form.username.errors %}
-                        <li class="error"><strong>{{ error|escape }}</strong></li>
-
-                    {% endfor %}
-                {% endif %}
-            </div>
-            <div class="center-block">
-                {% if form.email.errors %}
-                    {% for error in form.email.errors %}
-                        <li class="error"><strong>{{ error|escape }}</strong></li>
-                    {% endfor %}
-                {% endif %}
-            </div>
-            <div class="center-block">
-                <input type="text" name="username" maxlength="150" autofocus="" required="" id="id_username"
-                       placeholder="Логин" value="{{ form.username.value|default_if_none:"" }}">
-            </div>
-            <div class="center-block">
-                <input type="text" name="first_name" required="" id="id_first_name" placeholder="Имя" value="{{ form.first_name.value|default_if_none:"" }}">
-            </div>
-            <div class="center-block">
-                <input type="text" name="last_name" required="" id="id_last_name" placeholder="Фамилия" value="{{ form.last_name.value|default_if_none:"" }}">
-            </div>
-            <div class="center-block">
-                <input type="email" name="email" required="" id="id_email" placeholder="Email" value="{{ form.email.value|default_if_none:"" }}">
-            </div>
-            <div class="center-block">
-                <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1"
-                       placeholder="Пароль" value="">
-            </div>
-            <div class="center-block">
-                <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2"
-                       placeholder="Подтверждение пароля" value="">
-            </div>
-            <div class="center-block_a">
-                        <a href="/login">Уже зарегистрированы?</a>
+                {% for error in form.non_field_errors %}
+                    <span class="error-message">{{ error }}</span>
+                {% endfor %}
+                <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username"
+                       maxlength="150" required="" id="id_username" placeholder="Логин" style="font-size: 30px">
+                <div class="loose_pass">
+                    <a href="/signup">Ещё не зарегистрированы?</a>
                 </div>
+            </div>
+
             <div class="center-block">
-                <button type="submit">Зарегистрироваться</button>
+                <input type="password" name="password" autocomplete="current-password" required="" placeholder="Пароль"
+                       id="id_password">
+                <button type="submit">Войти</button>
             </div>
         </form>
     </div>
-</div>
 </div>
 </body>
 </html>

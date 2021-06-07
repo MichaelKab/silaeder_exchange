@@ -33,6 +33,13 @@
         font-size: 16px;
     }
 
+    .center-block {
+        margin-left: auto;
+        margin-right: auto;
+        width: 45%;
+
+    }
+
     button {
         font-size: 12pt;
         margin-top: 15px;
@@ -45,7 +52,7 @@
         display: inline-block;
         border-radius: 10px;
         -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;;
+        -moz-border-radius: 10px;
         padding: 6px;
         margin-bottom: 10px;
     }
@@ -96,11 +103,11 @@
     }
 
     .me {
-        width: 70%;
+        #width: 500px;
         margin-left: auto;
         margin-right: auto;
         height: 100%;
-
+        width: 90%;
     }
 
     .me_head {
@@ -128,13 +135,21 @@
         padding: 12px;
         background: #858383;
         color: white;
-        width: 60px;
+        width: 80px;
         text-align: center;
         top: 100%;
         display: inline-block;
         vertical-align: middle;
+        font-size: 20px;
     }
 
+    .field_ac {
+        margin-left: 10px;
+        width: 70%;
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 20px;
+    }
 
     .tr_f {
         border-top: 10px;
@@ -149,16 +164,18 @@
 
     .buttons_right form {
         width: 100px;
+        margin-left: auto;
     }
 
     .buttons_right form {
         display: inline-block;
-        margin-left: 20px;
+        margin-left: 15px;
     }
 
     .buttons_right form button {
         width: 100px;
         color: #858383;
+        margin-left: auto;
     }
 
     .name {
@@ -175,31 +192,36 @@
 
     .name h2 {
         text-align: center;
+        font-size: 30pt;
+    }
+    .HELP_CENTR{
+        text-align: center;
+        padding-bottom: 12px;
+        font-size: 20pt;
+        border: none;
+        color: #D3CFCF;
+
+    }
+    .main_b{
+        height: 32px;
+    }
+    .on{
+        background: green;
+        padding: 10px;
+        color: white;
+    }
+    .off{
+        background: black;
+        color: white;
+        padding: 10px;
     }
 
-    textarea {
-        width: 70%; /* Ширина поля в процентах */
-        height: 100px; /* Высота поля в пикселах */
-        resize: none; /* Запрещаем изменять размер */
-        vertical-align: middle;
-        margin-left: 10px;
-        margin-bottom: 15px;
-    }
-
-    input {
-        width: 40%;
-        margin-left: 10px;
-    }
-
-    .inp_cont {
-        width: 60%;
-    }
 </style>
 <body>
 <div class="head_prof">
     <div class="buttons_right">
-        <form action="/" target="_blank">
-            <button>Главная</button>
+        <form action="/">
+            <button>Main</button>
         </form>
         <!--
         <form action="/" target="_blank">
@@ -208,49 +230,56 @@
         <form action="/" target="_blank">
             <button>Создать</button>
         </form>-->
-        <form action="/pr/exit" target="_blank">
+         <form action="/pr/exit">
             <button>Sign out</button>
         </form>
     </div>
     <div class="name">
         <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-            <button type="submit" form="edit_prof" >Сохранить</button>
+        <form action="/pr/edit">
+            <button class='main_b'>Edit</button>
+        </form>
+        {% if user.can_see %}
+        <form action="/activate">
+            <button class="on">Disable profile</button>
+            <p class="HELP_CENTR">Your profile is visible</p>
+        </form>
+        {% else %}
+            <form action="/activate" type="submit">
+            <button class="off">Activate profile</button>
+            <p class="HELP_CENTR">Your profile is not visible</p>
+        </form>
+        {% endif %}
     </div>
 </div>
 <div class="body_prof">
     <div class="me">
         <div class="about_profile">
-            <form id="edit_prof" method="POST">
-                {% csrf_token %}
-                <div class="tr_f">
-                    <p class="field">Full name</p>
-                    <input type="text" name="last_name" value="{{ user.last_name }}"/>
-                    <input type="text" name="name" value="{{ user.first_name }}"/>
-                </div>
-                <div class="tr_f">
-                    <p class="field">Short description</p>
-                    <textarea maxlength="400" type="text" name="short_description">{{ user.short_description }}</textarea>
-                </div>
-                <div class="tr_f">
-                    <p class="field">О себе</p>
-                    <textarea type="text" name="about_me">{{ user.about_me }}</textarea>
-                </div>
-                <div class="tr_f">
-                    <p class="field">Учу</p>
-                    <textarea type="text" name="skills_know">{{ person.skills_know }}</textarea>
-
-                </div>
-                <div class="tr_f">
-                    <p class="field">Учусь</p>
-                    <textarea type="text" name="skills_wont">{{ person.skills_wont }}</textarea>
-
-
-                </div>
-                <div class="tr_f">
-                    <p class="field">Контакты</p>
-                    <input type="text" class="inp_cont" name="contact" value="{{ person.contact }}"/>
-                </div>
-            </form>
+            <div class="tr_f">
+                <p class="field">Full name</p>
+                <p class="field_ac">{{ user.first_name }} {{ user.last_name }}</p>
+            </div>
+            <div class="tr_f">
+                <p class="field">Short description</p>
+                <p class="field_ac">{{ user.short_description }}</p>
+            </div>
+            <div class="tr_f">
+                <div class="margin_cast"></div>
+                <p class="field">About myself</p>
+                <p class="field_ac">{{ user.about_me }}</p>
+            </div>
+            <div class="tr_f">
+                <p class="field">What to teach</p>
+                <p class="field_ac">{{ user.skills_know }}</p>
+            </div>
+            <div class="tr_f">
+                <p class="field">Want to learn</p>
+                <p class="field_ac">{{ user.skills_wont }}</p>
+            </div>
+            <div class="tr_f">
+                <p class="field">Contacts</p>
+                <p class="field_ac">{{ user.contact }}</p>
+            </div>
         </div>
     </div>
 </div>

@@ -219,7 +219,7 @@
 <body>
 <div class="head_prof">
     <div class="buttons_right">
-        <form action="/" target="_blank">
+        <form action="/">
             <button>Главная</button>
         </form>
         <!--
@@ -229,22 +229,22 @@
         <form action="/" target="_blank">
             <button>Создать</button>
         </form>-->
-         <form action="/pr/exit" target="_blank">
+         <form action="/pr/exit">
             <button>Выйти</button>
         </form>
     </div>
     <div class="name">
         <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-        <form action="/pr/edit" target="_blank">
+        <form action="/pr/edit">
             <button class='main_b'>Редактировать</button>
         </form>
         {% if user.can_see %}
-        <form action="/activate" target="_blank">
+        <form action="/activate">
             <button class="on">Отключить профиль</button>
             <p class="HELP_CENTR">Сейчас ваш профиль виден</p>
         </form>
         {% else %}
-            <form action="/activate" type="submit" target="_blank">
+            <form action="/activate" type="submit">
             <button class="off">Активировать профиль</button>
             <p class="HELP_CENTR">Сейчас ваш профиль не виден</p>
         </form>

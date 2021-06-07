@@ -128,7 +128,7 @@
         padding: 12px;
         background: #858383;
         color: white;
-        width: 60px;
+        width: 70px;
         text-align: center;
         top: 100%;
         display: inline-block;
@@ -199,7 +199,7 @@
 <div class="head_prof">
     <div class="buttons_right">
         <form action="/" target="_blank">
-            <button>Главная</button>
+            <button>Main</button>
         </form>
         <!--
         <form action="/" target="_blank">
@@ -214,7 +214,7 @@
     </div>
     <div class="name">
         <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-            <button type="submit" form="edit_prof" >Сохранить</button>
+            <button type="submit" form="edit_prof" >Save</button>
     </div>
 </div>
 <div class="body_prof">
@@ -232,22 +232,22 @@
                     <textarea maxlength="400" type="text" name="short_description">{{ user.short_description }}</textarea>
                 </div>
                 <div class="tr_f">
-                    <p class="field">О себе</p>
+                    <p class="field">About myself</p>
                     <textarea type="text" name="about_me">{{ user.about_me }}</textarea>
                 </div>
                 <div class="tr_f">
-                    <p class="field">Учу</p>
+                    <p class="field">What to teach</p>
                     <textarea type="text" name="skills_know">{{ person.skills_know }}</textarea>
 
                 </div>
                 <div class="tr_f">
-                    <p class="field">Учусь</p>
+                    <p class="field">Want to learn</p>
                     <textarea type="text" name="skills_wont">{{ person.skills_wont }}</textarea>
 
 
                 </div>
                 <div class="tr_f">
-                    <p class="field">Контакты</p>
+                    <p class="field">Contacts</p>
                     <input type="text" class="inp_cont" name="contact" value="{{ person.contact }}"/>
                 </div>
             </form>

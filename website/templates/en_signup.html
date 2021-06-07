@@ -180,30 +180,30 @@
             </div>
             <div class="center-block">
                 <input type="text" name="username" maxlength="150" autofocus="" required="" id="id_username"
-                       placeholder="Логин" value="{{ form.username.value|default_if_none:"" }}">
+                       placeholder="Username" value="{{ form.username.value|default_if_none:"" }}">
             </div>
             <div class="center-block">
-                <input type="text" name="first_name" required="" id="id_first_name" placeholder="Имя" value="{{ form.first_name.value|default_if_none:"" }}">
+                <input type="text" name="first_name" required="" id="id_first_name" placeholder="Name" value="{{ form.first_name.value|default_if_none:"" }}">
             </div>
             <div class="center-block">
-                <input type="text" name="last_name" required="" id="id_last_name" placeholder="Фамилия" value="{{ form.last_name.value|default_if_none:"" }}">
+                <input type="text" name="last_name" required="" id="id_last_name" placeholder="Surname" value="{{ form.last_name.value|default_if_none:"" }}">
             </div>
             <div class="center-block">
                 <input type="email" name="email" required="" id="id_email" placeholder="Email" value="{{ form.email.value|default_if_none:"" }}">
             </div>
             <div class="center-block">
                 <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1"
-                       placeholder="Пароль" value="">
+                       placeholder="Password" value="">
             </div>
             <div class="center-block">
                 <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2"
-                       placeholder="Подтверждение пароля" value="">
+                       placeholder="Re-enter password" value="">
             </div>
             <div class="center-block_a">
-                        <a href="/login">Уже зарегистрированы?</a>
+                        <a href="/login">Already have an account?</a>
                 </div>
             <div class="center-block">
-                <button type="submit">Зарегистрироваться</button>
+                <button type="submit">Sign up</button>
             </div>
         </form>
     </div>

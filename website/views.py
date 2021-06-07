@@ -200,7 +200,7 @@ def show_all_inf(request, pk):
         if user.can_see:
             print(user.id, user.about_me)
             print(user.skills_wont)
-            return render(request, "detail_application.html", {"application": user})
+            return render(request, "en_detail_application.html", {"application": user})
         else:
             return HttpResponseRedirect("/")
     except CustomUser.DoesNotExist:

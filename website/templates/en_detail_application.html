@@ -138,17 +138,17 @@
         </form>-->
         {% if  request.user.is_authenticated %}
             <form action="/pr">
-                <button class="long_button">Личный кабинет</button>
+                <button class="long_button">Account</button>
             </form>
-            <form action="/pr/exit">
-                <button class="sm_button">Выйти</button>
+            <form action="/">
+                <button class="sm_button">Main</button>
             </form>
         {% else %}
             <form action="/login">
-                <button class="sm_button">Войти</button>
+                <button class="sm_button">Log In</button>
             </form>
             <form action="/signup">
-                <button class="long_button">Регистрация</button>
+                <button class="long_button">Sign In</button>
             </form>
 
         {% endif %}
@@ -157,24 +157,24 @@
 <div class="main">
         <div class="content">
             <div class="theme">
-                <p class="title">ФИО</p>
+                <p class="title">Full name</p>
                 <p class="about">{{ application.first_name }} {{ application.last_name }}</p>
             </div>
             <div class="theme">
                 <div class="margin_cast"></div>
-                <p class="title">О себе</p>
+                <p class="title">About myself</p>
                 <p class="about">{{ application.about_me }}</p>
             </div>
             <div class="theme">
-                <p class="title">Учу</p>
+                <p class="title">What to teach</p>
                 <p class="about">{{ application.skills_know }}</p>
             </div>
             <div class="theme">
-                <p class="title">Учусь</p>
+                <p class="title">Want to learn</p>
                 <p class="about">{{ application.skills_wont }}</p>
             </div>
             <div class="theme">
-                <p class="title">Контакты</p>
+                <p class="title">Contacts</p>
                 <p class="about">{{ application.contact }}</p>
             </div>
         </div>

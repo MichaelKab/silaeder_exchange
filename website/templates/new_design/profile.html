@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../../static/pr.css">
+
+</head>
+<style>
+    @media screen and (min-device-width: 320px) and (max-device-width: 1000px) {
+        body {
+            initial-scale: 0.1;
+        }
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    body {
+        margin-top: 1rem;
+    }
+
+    .head a {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 30px;
+        line-height: 30px;
+        margin-left: 10px;
+    }
+
+
+    .Prof_p {
+        width: 200px;
+        height: 200px;
+        border-radius: 200px; /* Радиус скругления */
+        /* Параметры рамки */
+        box-shadow: 0 0 7px #666; /* Параметры тени */
+        float: left;
+    }
+
+    .big_gr {
+        font-size: 50px;
+        color: #04BFAD;
+        font-family: 'PT Sans', serif;
+        margin-bottom: 0;
+        margin-top: 5px;
+        padding-left: 0;
+
+    }
+
+    .big_c {
+        padding-left: 1%;
+        padding-top: 2em;
+        width: 100%;
+        height: 300px;
+    }
+
+    .c {
+        float: left;
+        width: calc(100% - 200px);
+        height: 250px;
+        display: grid;
+        padding-left: 30px;
+
+    }
+
+    .FullName {
+        position: absolute;
+        font-family: Lato, serif;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 59px;
+        line-height: 72px;
+        margin-bottom: 0;
+        margin-top: 10px;
+    }
+
+    .active {
+        font-family: PT Sans, serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 46.25px;
+        line-height: 60px;
+        margin: 0;
+        float: left;
+        height: 50px;
+    }
+
+    .FullName {
+        grid-column: 1;
+        grid-row: 1;
+
+    }
+
+    .active_d {
+        grid-column: 1;
+        grid-row: 2;
+        display: flex;
+    }
+
+    .info {
+        display: grid;
+        width: 100%;
+        position: relative;
+        padding-left: 1%;
+    }
+
+    .teach, .about, .contact, .learn {
+        display: grid;
+        max-width: 300px;
+        grid-template-rows: 41px 1fr;
+    }
+
+    .about {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .orange_spot {
+        background: #F8D16A;
+    }
+
+    .blue_spot {
+        background: #4673E6;
+    }
+
+    .contact {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .learn {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .teach {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .header_inf {
+        float: left;
+        height: 40px;
+        padding-left: 45px;
+        padding-bottom: 0;
+        margin: 0;
+        grid-column: 1;
+        grid-row: 1;
+        font-family: Lato, serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 30px;
+        line-height: 42px;
+    }
+
+    .orange_spot, .blue_spot {
+        width: 40px;
+        height: 40px;
+        float: left;
+        grid-column: 1;
+        grid-row: 1;
+        border-radius: 10px;
+        border: 0;
+    }
+
+    .information {
+        grid-column: 1;
+        grid-row: 2;
+        padding-left: 30px;
+        font-family: Lato, serif;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 25px;
+        margin-top: 10px;
+        float: top;
+    }
+
+</style>
+
+<body>
+<header class="">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+            </a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><p class="big_gr nav-link">SkillHunter</p></li>
+            </ul>
+
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+            </form>
+
+            <div class="col-md-3 text-end">
+                <button type="button" class="font btn btn-outline-primary me-2"
+                        onclick="document.location='/pr/edit'">Редактировать профиль
+                </button>
+                <button type="button" class="font btn btn-outline-primary me-2"
+                        onclick="document.location='/'">Main
+                </button>
+                <button type="button" class="font btn btn-primary" onclick="document.location='/pr/exit'">
+                    Sign-out
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="big_c">
+        <img src="{{ user.user_ava}}" alt="" class="Prof_p">
+        <div class="c">
+            <p class="FullName">{{ user.first_name }} {{ user.last_name }}</p>
+            <div class="active_d">
+                {% if user.can_see %}
+                    <a class="active" href="/activate" style="text-decoration: none; color:black;" data-abc="true">Freeze</a>
+                    <p class="green active" style="color:green; padding-left: 0.2em">Activate</p>
+                {% else %}
+                    <p class="active" style="color:red">Freeze</p>
+                    <a href="/activate" class='active' data-abc="true" style="text-decoration: none; color:black; padding-left: 0.3em">Activate</a>
+                {% endif %}
+                </div>
+            </div>
+            <div class="info">
+                <div class="about">
+                    <button class="orange_spot"></button>
+                    <h1 class="header_inf">About me</h1>
+                    <p class="information">{{ user.about_me }}</p>
+                </div>
+                <div class="contact">
+                    <button class="orange_spot"></button>
+                    <h1 class="header_inf">Contact</h1>
+                    <p class="information">{{ user.contact }}</p>
+                </div>
+                <div class="learn">
+                    <button class="blue_spot"></button>
+                    <h1 class="header_inf">Learn</h1>
+                    <p class="information">{{ user.skills_wont }}</p>
+                </div>
+                <div class="teach">
+                    <button class="blue_spot"></button>
+                    <h1 class="header_inf">Teach</h1>
+                    <p class="information">{{ user.skills_know }}</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

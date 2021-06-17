@@ -11,6 +11,7 @@ urlpatterns = [
     path('<pk>/delete/', views.delit_application),
     path('pr', views.cob, name="prof_page"),
     path('<pk>/show/', views.show_all_inf),
+    path('<pk>/responding/', views.responding),
     path('pr/edit', views.edit_profile, name="prof_page_edit"),
     path('signup/', SignUpView.as_view(), name=''),
     #path('signup/', SignUpView.as_view(), name=''),

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    @media screen and (min-device-width: 320px) and (max-device-width: 1000px) {
+        body {
+            initial-scale: 0.1;
+        }
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    body {
+        margin-top: 1rem;
+    }
+
+    .l-wrap {
+        /*max-width: window.innerWidth; /*1140px; */
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .grid-item {
+        width: calc((100% - 24px * 3) / 3);
+        margin-top: 24px;
+        max-width: 450px;
+        min-width: 250px;
+        margin-left: 10px;
+        margin-right: 10px;
+        float: left;
+        position: center;
+    }
+
+    /* Demo purposes */
+    .grid-inner {
+        margin-top: 5px;
+        display: flex;
+        justify-content: left;
+        padding-left: 10px;
+        align-items: center;
+
+    }
+
+    .head {
+        margin-left: auto;
+        margin-right: 2em;
+        width: 500px;
+        text-align: center;
+    }
+
+    .head a {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 30px;
+        line-height: 30px;
+        margin-left: 10px;
+    }
+
+    .inf {
+        border: 4px black;
+        padding: 5px;
+    }
+
+    .grid-item {
+        height: 450px;
+        background: #FFFFFF;
+        border: 1px solid #FFFFFF;
+        box-sizing: border-box;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+        overflow: scroll;
+        overflow-x: hidden;
+
+    }
+
+    .round {
+        width: 60px;
+        border-radius: 100px; /* Радиус скругления */
+        /* Параметры рамки */
+        box-shadow: 0 0 7px #666; /* Параметры тени */
+        float: left;
+    }
+
+    .FulN {
+        margin-left: 20px;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 30px;
+        line-height: 40px;
+        width: calc(100% - 120px);
+        font-family: 'PT Sans', serif;
+    }
+
+    .cont {
+        font-family: 'PT Sans', serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 25px;
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-top: 2px;
+    }
+
+    .text {
+        height: calc(100% - 125px);
+        max-height: 300px;
+
+    }
+
+    .teg {
+        font-size: 20px;
+        padding-left: 10px;
+    }
+
+    .big_gr {
+        font-size: 50px;
+        color: #04BFAD;
+        font-family: 'PT Sans', serif;
+        margin-bottom: 0;
+        margin-top: 5px;
+        padding-left: 0;
+
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<link rel="stylesheet" type="text/css"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/cssbootstrap.min.css">
+    -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Playfair+Display"/>
+    <link rel="stylesheet" type="text/css" href="static/pr.css">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+
+</head>
+<body>
+<header class="">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+            </a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><p class="big_gr nav-link">SkillHunter</p></li>
+
+            </ul>
+
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" method="post">
+                {% csrf_token %}
+                <input type="search" name="find" class="form-control" placeholder="Search..." aria-label="Search">
+            </form>
+
+            <div class="col-md-3 text-end">
+                {% if  request.user.is_authenticated %}
+                <button type="button" class="font btn btn-outline-primary me-2" onclick="document.location='/pr'">Account</button>
+                <button type="button" class="font btn btn-primary" onclick="document.location='/pr/exit'">Sign-out</button>
+
+                {% else %}
+                <button type="button" class="font btn btn-outline-primary me-2" onclick="document.location='/login'">Login</button>
+                <button type="button" class="font btn btn-primary" onclick="document.location='/signup'">Sign-up</button>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</header>
+<div class="l-wrap container">
+    <div class="three-col-grid">
+        {% for user in users %}
+            <div class="grid-item">
+                <div class="grid-inner">
+
+                    <img src="{{ user.user_ava}}" alt="" class="round">
+                    <p class="FulN">{{ user.first_name }} {{ user.last_name }}</p>
+                </div>
+                <div class="text">
+                    <p class="cont">Learn: {{ user.skills_wont }}</p>
+                    <p class="cont">Teach: {{ user.skills_know }}</p>
+                    <p class="cont">Contacts: {{ user.contact }}</p>
+                    <p style="padding-left:32%">Responding: {{ user.responding }}</p>
+                    <button type="button" class="font btn btn-primary" onclick="document.location='/{{ user.id }}/responding'" style="margin-left: 32%; ">respond</button>
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

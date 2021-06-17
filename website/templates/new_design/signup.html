@@ -7,12 +7,12 @@
 
 <Style>
     body {
-        background-color: #f2f7fb;
+        background-color: #f2f7fb
     }
 
     .login-block {
         margin: 30px auto;
-        min-height: 93.6vh;
+        min-height: 93.6vh
     }
 
     .login-block .auth-box {
@@ -139,25 +139,52 @@
                         <div class="card-block">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h3 class="text-center heading">Login</h3>
+                                    <h3 class="text-center heading">Create Account</h3>
                                 </div>
                             </div>
-                            <div class="form-group form-primary"><input class="form-control" type="text" name="username"
-                                                                        maxlength="150" autofocus=""
-                                                                        id="id_username"
-                                                                        placeholder="Username" autocomplete="username"
-                                                                        value="{{ form.username.value|default_if_none:"" }}">
+                        <div class="form-group form-primary"><input class="form-control" type="text" name="username" maxlength="150" autofocus="" required="" id="id_username"
+                                   placeholder="Username" value="{{ form.username.value|default_if_none:"" }}"></div>
+                            <div class="form-group form-primary"><input type="text" class="form-control"
+                                                                        name="first_name" placeholder="First name"
+                                                                        id="id_first_name"
+                                                                        value="{{ form.first_name.value|default_if_none:"" }}">
                             </div>
-                            <div class="form-group form-primary"><input type="password" class="form-control" autocomplete="current-password"
-                                                                        name="password" placeholder="Password" value=""
-                                                                        id="id_password"></div>
-                            {% for error in form.non_field_errors %}
-                                <p class="error">{{ error }}</p>
-                            {% endfor %}
+                            <div class="form-group form-primary"><input type="text" class="form-control"
+                                                                        name="last_name" placeholder="Second name"
+                                                                        id="id_last_name"
+                                                                        value="{{ form.last_name.value|default_if_none:"" }}">
+                            </div>
+                            <div class="form-group form-primary"><input type="text" class="form-control" name="email"
+                                                                        value="{{ form.email.value|default_if_none:"" }}"
+                                                                        placeholder="Email" id="email"></div>
+                            <div class="form-group form-primary"><input type="password" class="form-control"
+                                                                        name="password1" placeholder="Password" value=""
+                                                                        id="id_password1"></div>
+                            <div class="form-group form-primary"><input type="password" class="form-control"
+                                                                        name="password2"
+                                                                        placeholder="Repeat password" value=""
+                                                                        id="id_password2"></div>
+                            {% if form.password2.errors %}
+                                {% for error in form.password2.errors %}
+                                    <li class="error">{{ error|escape }}</li>
+
+                                {% endfor %}
+                            {% endif %}
+                            {% if form.username.errors %}
+                                {% for error in form.username.errors %}
+                                    <li class="error">{{ error|escape }}</li>
+
+                                {% endfor %}
+                            {% endif %}
+                            {% if form.email.errors %}
+                                {% for error in form.email.errors %}
+                                    <li class="error">{{ error|escape }}</li>
+                                {% endfor %}
+                            {% endif %}
                             <div class="row">
                                 <div class="col-md-12"><input type="submit"
                                                               class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20"
-                                                              name="submit" value="Login">
+                                                              name="submit" value="Signup Now">
                                     <!-- <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20"><i class="fa fa-lock"></i> Signup Now </button> -->
                                 </div>
                             </div>
@@ -169,8 +196,8 @@
                             <div class="row">
                                 <div class="col-md-12"> <a class="btn btn-lg btn-google btn-block text-uppercase btn-outline" href="#"><img src="https://img.icons8.com/color/16/000000/google-logo.png"> Signup Using Google</a> </div>
                             </div> <br> -->
-                            <p class="text-inverse text-center">Don't have an account? <a href="/signup"
-                                                                                          data-abc="true">Create a new Account</a>
+                            <p class="text-inverse text-center">Already have an account? <a href="/login"
+                                                                                            data-abc="true">Login</a>
                             </p>
                         </div>
                     </div>

@@ -3,6 +3,8 @@ from django.contrib.auth.models import AbstractUser
 
 
 class CustomUser(AbstractUser):
+    user_ava = models.ImageField(upload_to='static/user_pics', blank=True)
+    responding = models.IntegerField(default=0)
     age = models.IntegerField(default=13)
     skills_wont = models.CharField(max_length=20000, default="-")
     skills_know = models.CharField(max_length=20000, default="-")

@@ -13,9 +13,7 @@ loremipsum==1.0.5
 Pillow==8.2.0
 psycopg2==2.8.6
 Pygments==2.9.0
-pypiwin32==223
 pytz==2020.4
-pywin32==300
 requests==2.25.1
 six==1.15.0
 sqlparse==0.4.1

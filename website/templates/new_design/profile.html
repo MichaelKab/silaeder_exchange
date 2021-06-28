@@ -35,9 +35,8 @@
     .Prof_p {
         width: 200px;
         height: 200px;
-        border-radius: 200px; /* Радиус скругления */
-        /* Параметры рамки */
-        box-shadow: 0 0 7px #666; /* Параметры тени */
+        border-radius: 200px;
+        box-shadow: 0 0 7px #666;
         float: left;
     }
 
@@ -61,7 +60,7 @@
     .c {
         float: left;
         width: calc(100% - 200px);
-        height: 250px;
+        min-height: 200px;
         display: grid;
         padding-left: 30px;
 
@@ -98,7 +97,7 @@
     .active_d {
         grid-column: 1;
         grid-row: 2;
-        display: flex;
+        height: auto;
     }
 
     .info {
@@ -106,6 +105,8 @@
         width: 100%;
         position: relative;
         padding-left: 1%;
+        padding-top: 2%;
+
     }
 
     .teach, .about, .contact, .learn {
@@ -184,13 +185,7 @@
 <body>
 <header class="">
     <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
-                    <use xlink:href="#bootstrap"></use>
-                </svg>
-            </a>
-
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" style="max-width: 700px">
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><p class="big_gr nav-link">SkillHunter</p></li>
             </ul>

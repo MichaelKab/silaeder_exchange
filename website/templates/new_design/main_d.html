@@ -174,7 +174,7 @@
 <div class="l-wrap container">
     <div class="three-col-grid">
         {% for user in users %}
-            <a href="foo.html" style="color:black"><div class="grid-item">
+            <!--<a href="foo.html" style="color:black">--><div class="grid-item">
                 <div class="grid-inner">
 
                     <!--<img src="{{ user.user_ava}}" alt="" class="round">-->
@@ -188,7 +188,7 @@
                     <button type="button" class="font btn btn-primary" onclick="document.location='/{{ user.id }}/responding'" style="margin-left: 32%; ">respond</button>
 
                 </div>
-            </div></a>
+            </div><!--</a>-->
         {% endfor %}
     </div>
 </body>

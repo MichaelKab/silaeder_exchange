@@ -7,3 +7,8 @@
 /silaeder_exchange/__pycache__/
 /website/migrations/__pycache__/
 /silaeder_exchange/secr.py
+.idea/
+media/
+staticfiles/
+venv/
+website/__pycache__/
